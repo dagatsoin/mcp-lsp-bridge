@@ -24,6 +24,3 @@ Thumbs.db
 
 # Coverage
 coverage/
-
-# Benchmark
-benchmark/
