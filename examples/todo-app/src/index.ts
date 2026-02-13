@@ -2,9 +2,9 @@ import { addTodo, getTodos, updateTodo, deleteTodo } from './store';
 import { formatTodoList, countCompleted, countPending } from './utils';
 
 // Add some todos
-addTodo({ title: 'Learn TypeScript', completed: true });
-addTodo({ title: 'Build MCP server', completed: false });
-addTodo({ title: 'Write tests', completed: false });
+addTodo({ title: 'Learn TypeScript', done: true });
+addTodo({ title: 'Build MCP server', done: false });
+addTodo({ title: 'Write tests', done: false });
 
 // Display all todos
 console.log('All Todos:');
@@ -18,7 +18,7 @@ console.log(`Pending: ${countPending(all)}`);
 console.log();
 
 // Update a todo
-updateTodo(2, { completed: true });
+updateTodo(2, { done: true });
 console.log('After completing "Build MCP server":');
 console.log(formatTodoList(getTodos()));
 console.log();

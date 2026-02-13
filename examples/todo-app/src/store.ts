@@ -7,7 +7,7 @@ export function addTodo(data: TodoCreate): Todo {
   const todo: Todo = {
     id: nextId++,
     title: data.title,
-    completed: data.completed,
+    done: data.done,
     createdAt: new Date(),
   };
   todos.push(todo);
@@ -18,7 +18,7 @@ export function getTodos(filter?: TodoFilter): Todo[] {
   let result = [...todos];
 
   if (filter?.completed !== undefined) {
-    result = result.filter((t) => t.completed === filter.completed);
+    result = result.filter((t) => t.done === filter.completed);
   }
 
   if (filter?.search) {
@@ -38,7 +38,7 @@ export function updateTodo(id: number, updates: Partial<TodoCreate>): Todo | und
   if (!todo) return undefined;
 
   if (updates.title !== undefined) todo.title = updates.title;
-  if (updates.completed !== undefined) todo.completed = updates.completed;
+  if (updates.done !== undefined) todo.done = updates.done;
 
   return todo;
 }

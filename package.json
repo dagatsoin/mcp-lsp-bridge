@@ -11,13 +11,19 @@
   "bin": {
     "mcp-lsp-bridge": "dist/index.js"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
     "start": "node dist/index.js",
     "test": "vitest run",
     "test:watch": "vitest",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build && npm test"
   },
   "keywords": [
     "mcp",
@@ -26,7 +32,15 @@
     "language-server",
     "claude-code"
   ],
-  "author": "",
+  "author": "Daniel Neveux <d.neveux@warfog.gg>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dagatsoin/mcp-lsp-bridge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dagatsoin/mcp-lsp-bridge/issues"
+  },
+  "homepage": "https://github.com/dagatsoin/mcp-lsp-bridge#readme",
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",

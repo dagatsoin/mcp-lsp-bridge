@@ -1,7 +1,7 @@
 import { Todo } from './types';
 
 export function formatTodo(todo: Todo): string {
-  const status = todo.completed ? '[x]' : '[ ]';
+  const status = todo.done ? '[x]' : '[ ]';
   return `${status} ${todo.id}: ${todo.title}`;
 }
 
@@ -11,9 +11,9 @@ export function formatTodoList(todos: Todo[]): string {
 }
 
 export function countCompleted(todos: Todo[]): number {
-  return todos.filter((t) => t.completed).length;
+  return todos.filter((t) => t.done).length;
 }
 
 export function countPending(todos: Todo[]): number {
-  return todos.filter((t) => !t.completed).length;
+  return todos.filter((t) => !t.done).length;
 }
