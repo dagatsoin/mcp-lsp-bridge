@@ -8,16 +8,16 @@ Unlike text-based search (ripgrep), this server provides **semantically-aware** 
 
 ## Benchmark
 
-Compared to Claude code navigation with text-based tools (e.g. `find_references` via ripgrep):
+Tested on a real TypeScript monorepo (423 files, 4 packages). Task: rename a type property referenced across 118 files with 1,000+ occurrences.
 
 | Metric | Claude | MCP-LSP Bridge | Improvement |
 |--------|--------|----------------|-------------|
-| **Time** | 34.9 sec | 10.6 sec | 3.3x faster |
-| **Tool calls** | 16 | 1 | 16x fewer |
-| **Tokens** | ~4,500 | ~200 | 22x fewer |
-| **Cost** | ~$0.07 | ~$0.003 | ~96% savings |
+| **Time** | 160 sec | 22 sec | 7x faster |
+| **Tool calls** | 41 | 4 | 10x fewer |
+| **Tokens** | ~6,300 | ~12 | 500x fewer |
+| **Cost** | ~$2.20 | ~$0.15 | 93% savings |
 
-One MCP tool call replaces an entire chain of grep/read/filter steps — faster, cheaper, and more accurate.
+One MCP tool call replaces an entire chain of grep/read/edit steps — faster, cheaper, and more accurate.
 
 ## How It Works
 
@@ -47,11 +47,11 @@ VS Code already gives **you** IntelliSense through its built-in `tsserver`. This
 
 ### Example: VS Code + Claude Code
 
-1. You're editing a TypeScript project in VS Code
+1. You're editing a TypeScript monorepo in VS Code
 2. You open the integrated terminal and run Claude Code
-3. You ask Claude to refactor a function used across 20 files
-4. **Without mcp-lsp-bridge:** Claude uses `grep` to find the symbol name, reads each file, filters out false matches from comments and strings — 16+ tool calls, ~35 seconds
-5. **With mcp-lsp-bridge:** Claude calls `find_references` once and gets every real usage instantly — 1 tool call, ~10 seconds, zero false positives
+3. You ask Claude to rename a type property used across 118 files
+4. **Without mcp-lsp-bridge:** Claude uses `grep` to find the symbol, reads each file, edits them one by one — 41 tool calls, ~160 seconds, $2.20
+5. **With mcp-lsp-bridge:** Claude calls `rename_symbol` once and updates every reference instantly — 4 tool calls, ~22 seconds, $0.15
 
 ## Tools
 
